@@ -1261,132 +1261,278 @@
 </div><!-- fin container -->
 
 <!-- ================================================================ -->
-<!-- ========== VERSION MOBILE / TABLETTE (à laisser en dernier) ===== -->
+<!-- ========== VERSION MOBILE (à laisser en dernier) =============== -->
 <!-- ================================================================ -->
 <style>
-    /* ----- Base : tous écrans ----- */
-    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-    img { max-width: 100%; }
-    .left-column, .right-column { min-width: 0; }
+    /* Menu de navigation : caché sur PC */
+    .mnav { display: none; }
 
-    /* ----- Tablette et petits ordinateurs (jusqu'à 1000 px) ----- */
-    @media (max-width: 1000px) {
-        .card-body { overflow-x: auto; }
+    @media (max-width: 900px) {
 
+        /* ----- Base : rien ne dépasse de l'écran ----- */
+        html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img { max-width: 100%; }
+        body {
+            padding: 0 8px calc(10px + env(safe-area-inset-bottom));
+        }
+        .container { width: 100%; }
+
+        /* ----- Bande bleue en haut : titre + menu ----- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+            margin: 0 -8px 10px;
+            border-radius: 0;
+            padding: calc(8px + env(safe-area-inset-top)) 10px 8px;
+            font-size: 1rem;
+        }
+        .mnav {
+            position: relative;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 2px;
+        }
+        .mnav::-webkit-scrollbar { display: none; }
+        .mnav button {
+            flex: 0 0 auto;
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .mnav button.active { background: #fff; color: var(--tm-blue); }
+
+        /* ----- Ordre des blocs : une seule colonne ----- */
+        .grid-layout { display: flex; flex-direction: column; gap: 0; }
+        .left-column, .right-column { display: contents; }
+
+        .card[data-sec="profil"]     { order: 0; }
+        .card[data-sec="position"]   { order: 1; }
+        .card[data-sec="transferts"] { order: 2; }
+        .card[data-sec="stats"]      { order: 3; }
+        .card[data-sec="matchs"]     { order: 4; }
+        .card[data-sec="rumeurs"]    { order: 5; }
+        .card[data-sec="reseaux"]    { order: 6; }
+        .card[data-sec="sources"]    { order: 7; }
+
+        .card { margin-bottom: 10px; }
+        .card-header { padding: 10px 12px; font-size: 1rem; }
+        .card-body { padding: 10px; overflow-x: visible; }
+
+        /* ----- Profil ----- */
         .player-profile {
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 16px;
+            gap: 12px;
         }
+        .player-photo-wrapper { width: 120px; height: 144px; margin: 0 auto; }
         .player-details { width: 100%; }
-        .info-grid { text-align: center; justify-items: center; }
-
-        .club-box,
-        .market-box {
+        .player-name { font-size: 1.5rem; }
+        .player-meta { font-size: 0.82rem; margin-bottom: 10px; }
+        .info-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+            font-size: 0.88rem;
+            text-align: center;
+        }
+        .club-box, .market-box {
             width: 100%;
-            max-width: 480px;
-            align-self: center;
+            max-width: 100%;
+            align-self: stretch;
+            padding: 12px;
             text-align: center;
         }
         .club-box-top { justify-content: center; }
+        .club-box-logo { width: 54px; height: 54px; }
         .club-box-row { justify-content: center; flex-wrap: wrap; }
         .club-box-row span { white-space: normal !important; }
-    }
 
-    /* ----- Téléphones (iPhone, Samsung, Redmi...) jusqu'à 600 px ----- */
-    @media (max-width: 600px) {
-        body {
-            padding: 10px;
-            padding-left: calc(10px + env(safe-area-inset-left));
-            padding-right: calc(10px + env(safe-area-inset-right));
-            padding-bottom: calc(10px + env(safe-area-inset-bottom));
-        }
-
-        header {
-            text-align: center;
-            padding: 12px 14px;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-        }
-
-        .grid-layout { gap: 12px; }
-        .card { margin-bottom: 12px; }
-        .card-header { padding: 10px 12px; font-size: 1rem; }
-        .card-body { padding: 12px; }
-
-        /* Profil */
-        .player-photo-wrapper { width: 130px; height: 156px; margin: 0 auto; }
-        .player-name { font-size: 1.6rem; }
-        .player-meta { font-size: 0.85rem; margin-bottom: 12px; }
-        .info-grid {
-            grid-template-columns: 1fr;
-            gap: 8px;
-            font-size: 0.92rem;
-        }
-        .club-box { padding: 12px; }
-        .club-box-logo { width: 56px; height: 56px; }
-        .market-box { padding: 12px; }
-
-        /* Terrain tactique */
+        /* ----- Terrain tactique ----- */
         .position-container {
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 16px;
+            gap: 12px;
         }
         .position-text-block, .pitch-wrapper { width: 100%; }
-        .main-position-text { font-size: 1rem; margin-bottom: 10px; }
+        .pitch-wrapper { justify-content: center; }
+        .main-position-text { font-size: 1rem; margin-bottom: 8px; }
 
-        /* Tableaux en général */
-        table { font-size: 0.82rem; }
-        th { padding: 8px 6px; font-size: 0.78rem; }
-        td { padding: 8px 6px; }
-        .transfers th, .transfers td { padding: 6px 8px; }
+        /* ----- Tableaux : ils se compressent pour tenir dans l'écran ----- */
+        table { font-size: 0.72rem; }
+        th { padding: 6px 4px; }
+        td { padding: 6px 4px; }
+
+        /* Historique des transferts */
+        .transfers {
+            table-layout: fixed;
+            width: 100%;
+            font-size: 0.62rem !important;
+        }
+        .transfers th, .transfers td {
+            padding: 5px 3px;
+            font-size: 0.62rem !important;
+            white-space: normal;
+            word-break: break-word;
+            hyphens: auto;
+            text-align: left;
+        }
+        .transfers .right { text-align: center; }
+        .transfers th:nth-child(1) { width: 10%; }
+        .transfers th:nth-child(2) { width: 15%; }
+        .transfers th:nth-child(3) { width: 24%; }
+        .transfers th:nth-child(4) { width: 24%; }
+        .transfers th:nth-child(5) { width: 13%; }
+        .transfers th:nth-child(6) { width: 14%; }
+        .transfers .club-cell {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            white-space: normal;
+        }
+        .transfers .club-badge, .transfers .no-club-icon { width: 14px; height: 14px; }
 
         /* Statistiques de la saison */
+        .right-column .card-body table { font-size: 0.7rem !important; }
         .nat-team-header {
             justify-content: center;
             text-align: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 0.85rem;
         }
-        .stat-badge { font-size: 0.8rem; padding: 4px 8px; }
+        .stat-badge { font-size: 0.7rem; padding: 3px 6px; }
 
         /* Historique des matchs */
-        .hm-table { font-size: 0.78rem; }
-        .hm-table th, .hm-table td { padding: 8px 4px; }
-        .hm-match { white-space: normal; flex-wrap: wrap; gap: 4px 6px; }
-        .hm-team { white-space: normal; gap: 4px; }
-        .hm-logo, .hm-logo-empty { width: 18px; height: 18px; }
-        .hm-icon, .hm-boot { width: 15px; height: 15px; }
-        .hm-icons { flex-wrap: wrap; gap: 2px; }
+        .hm-table { table-layout: fixed; width: 100%; font-size: 0.62rem; }
+        .hm-table th, .hm-table td {
+            padding: 5px 2px;
+            font-size: 0.62rem;
+            word-break: break-word;
+        }
+        .hm-table th:nth-child(1) { width: 16%; }
+        .hm-table th:nth-child(2) { width: 44%; }
+        .hm-table th:nth-child(3) { width: 14%; }
+        .hm-table th:nth-child(4) { width: 14%; }
+        .hm-table th:nth-child(5) { width: 12%; }
+        .hm-table td:nth-child(1) { white-space: normal; }
+        .hm-match {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            white-space: normal;
+        }
+        .hm-team { white-space: normal; gap: 4px; text-align: left; }
+        .hm-logo, .hm-logo-empty { width: 14px; height: 14px; }
+        .hm-icon, .hm-boot { width: 12px; height: 12px; }
+        .hm-ball { font-size: 0.75rem; }
+        .hm-icons { flex-wrap: wrap; gap: 1px; }
 
-        /* Sélecteurs de saison plus faciles à toucher */
-        #season-btn, #hm-season-btn {
-            padding: 8px 4px !important;
-            min-height: 40px;
-        }
-        #season-menu li, #hm-season-menu li {
-            padding: 12px 18px !important;
-        }
+        /* Sélecteurs de saison faciles à toucher */
+        #season-btn, #hm-season-btn { padding: 6px 4px !important; min-height: 36px; }
+        #season-menu li, #hm-season-menu li { padding: 10px 18px !important; }
 
         /* Réseaux sociaux centrés */
-        .social-row { justify-content: center; gap: 18px !important; }
+        .social-row { justify-content: center; gap: 20px !important; }
         .social-row svg { width: 38px; height: 38px; }
 
         /* Sources */
-        .sources-list { font-size: 0.85rem; overflow-wrap: anywhere; }
+        .sources-list { font-size: 0.82rem; overflow-wrap: anywhere; }
     }
 
-    /* ----- Petits téléphones (iPhone SE, 360 px et moins) ----- */
+    /* Petits téléphones (iPhone SE, 360 px et moins) */
     @media (max-width: 380px) {
-        .player-name { font-size: 1.4rem; }
-        .player-photo-wrapper { width: 115px; height: 138px; }
+        .player-name { font-size: 1.3rem; }
+        .player-photo-wrapper { width: 105px; height: 126px; }
         .football-pitch { width: 160px; height: 134px; }
-        .hm-table { font-size: 0.74rem; }
-        .stat-badge { font-size: 0.75rem; }
+        .hm-table th, .hm-table td, .transfers th, .transfers td { font-size: 0.56rem !important; }
+        .mnav button { padding: 6px 10px; font-size: 0.75rem; }
     }
 </style>
+
+<script>
+    /* Menu de navigation mobile : repère les blocs, les range dans l'ordre et crée le menu */
+    (function () {
+        var secs = [
+            { k: 'profil',     t: 'Profil',     m: null },
+            { k: 'position',   t: 'Position',   m: 'position' },
+            { k: 'transferts', t: 'Transferts', m: 'historique des transferts' },
+            { k: 'stats',      t: 'Stats',      m: 'statistiques' },
+            { k: 'matchs',     t: 'Matchs',     m: 'historique des matchs' },
+            { k: 'rumeurs',    t: 'Rumeurs',    m: 'rumeurs' },
+            { k: 'reseaux',    t: 'Réseaux',    m: 'réseaux' },
+            { k: 'sources',    t: 'Sources',    m: 'sources' }
+        ];
+        var header = document.querySelector('header');
+        var found = {};
+
+        document.querySelectorAll('.card').forEach(function (card) {
+            var h = card.querySelector('.card-header');
+            if (!h) { card.setAttribute('data-sec', 'profil'); found.profil = card; return; }
+            var txt = h.textContent.toLowerCase();
+            secs.some(function (s) {
+                if (s.m && !found[s.k] && txt.indexOf(s.m) > -1) {
+                    card.setAttribute('data-sec', s.k);
+                    found[s.k] = card;
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        var nav = document.createElement('nav');
+        nav.className = 'mnav';
+        var buttons = {};
+
+        secs.forEach(function (s) {
+            if (!found[s.k]) return;
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = s.t;
+            b.addEventListener('click', function () {
+                var y = found[s.k].getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 8;
+                window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            });
+            nav.appendChild(b);
+            buttons[s.k] = b;
+        });
+        header.appendChild(nav);
+
+        var current = '';
+        function updateActive() {
+            var limit = header.offsetHeight + 40;
+            var active = 'profil';
+            secs.forEach(function (s) {
+                if (found[s.k] && found[s.k].getBoundingClientRect().top <= limit) active = s.k;
+            });
+            if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 4) {
+                active = 'sources';
+            }
+            if (active === current || !buttons[active]) return;
+            current = active;
+            Object.keys(buttons).forEach(function (k) { buttons[k].classList.toggle('active', k === active); });
+            var b = buttons[active];
+            nav.scrollTo({ left: b.offsetLeft - nav.clientWidth / 2 + b.clientWidth / 2, behavior: 'smooth' });
+        }
+        window.addEventListener('scroll', updateActive, { passive: true });
+        window.addEventListener('resize', updateActive);
+        updateActive();
+    })();
+</script>
 
 </body>
 </html>
