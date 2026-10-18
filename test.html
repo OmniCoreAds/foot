@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fiche Joueur Bilal Pavuna Karma - TransferMarket Style</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #f2f5f7;
+            --tm-blue: #1a3151;
+            --tm-light-blue: #2a4e7e;
+            --tm-yellow: #e4a200;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-color: #d8dee4;
+            --white: #ffffff;
+            --pitch-blue: #1e5bd4; /* Bleu nuit tactique */
+            --pitch-line: #ffffff;  /* Lignes de terrain jaunes */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--tm-blue);
+            color: var(--white);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* --- DISPOSITION DE LA PAGE --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            background-color: var(--tm-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        /* --- PROFIL JOUEUR (pleine largeur) --- */
+        .player-profile {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 1000px) {
+            .player-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .player-photo-wrapper {
+            position: relative;
+            width: 150px;
+            height: 180px;
+            background-color: #e9ecef;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .player-photo-placeholder {
+            font-size: 4rem;
+            color: var(--text-light);
+        }
+
+        .player-details {
+            flex-grow: 1;
+        }
+
+        .player-name {
+            font-size: 2rem;
+            color: var(--tm-blue);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .player-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .info-item span {
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        /* --- ENCART CLUB ACTUEL (style Transfermarkt) --- */
+        .club-box {
+            flex-shrink: 0;
+            width: 300px;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f7f9fa 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        @media (max-width: 1000px) {
+            .club-box {
+                width: 100%;
+            }
+        }
+
+        .club-box-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .club-box-logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .club-box-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .club-box-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--tm-blue);
+            line-height: 1.25;
+        }
+
+        .club-box-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.92rem;
+        }
+
+        .club-box-row .row-label {
+            font-weight: bold;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .club-box-row img,
+        .club-box-row svg {
+            height: 20px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        /* --- PETIT BLOC VALEUR MARCHANDE (dans le profil) --- */
+        .market-box {
+            flex-shrink: 0;
+            width: 170px;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f7f9fa 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1000px) {
+            .market-box {
+                width: 100%;
+            }
+        }
+        .market-box-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 400 !important;
+    color: var(--text-light);
+}
+
+.market-box-amount {
+    font-size: 1.6rem !important;
+    font-weight: 400 !important;
+    color: var(--text-dark) !important;
+}
+
+        
+
+        /* --- TERRAIN DE FOOTBALL (DEMI-TERRAIN INVERSÉ) --- */
+        .position-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .position-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .position-text-block {
+            flex: 1;
+        }
+
+        .main-position-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .main-position-text strong {
+            color: var(--tm-light-blue);
+        }
+
+        .other-positions {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            list-style: none;
+        }
+        .other-positions li {
+            margin-bottom: 6px;
+        }
+
+        .pitch-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Demi-terrain vertical orienté défense/inversé (but en bas) */
+        .football-pitch {
+            width: 180px;
+            height: 150px;
+            background-color: var(--pitch-blue);
+            border: 2px solid var(--pitch-line);
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        /* Ligne du haut du demi-terrain (Ligne médiane) */
+        .pitch-top-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--pitch-line);
+        }
+
+        /* Arc de cercle de la ligne médiane en haut */
+        .pitch-center-arc {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--pitch-line);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Surface de réparation en bas */
+        .pitch-box-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 45px;
+            border: 2px solid var(--pitch-line);
+            border-bottom: none;
+        }
+
+        /* Zone des 5.5 mètres en bas */
+        .pitch-goal-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 15px;
+            border: 2px solid var(--pitch-line);
+            border-bottom: none;
+        }
+
+        /* POINTS TACTIQUES */
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        /* Point Principal (Gros et Jaune) - Ailier Gauche */
+        .dot-main {
+            top: 22px; 
+            left: 8%;
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff;
+            border: 4px solid #ffff;
+        }
+
+        /* Points Secondaires (Blancs avec bordure jaune) */
+        .dot-secondary {
+            width: 12px;
+            height: 12px;
+            background-color: #ffffff;
+            border: 2px solid #ffff;
+        }
+
+        /* Milieu Offensif */
+        .dot-mo {
+            top: 34px;
+            left: 50%;
+        }
+
+        /* Ailier Droit */
+        .dot-ad {
+            top: 16px;
+            left: 90%;
+        }
+
+        /* --- TABLEAUX --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f7f9fa;
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .club-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .club-badge {
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .fee {
+            font-weight: bold;
+            color: var(--tm-light-blue);
+        }
+
+        .probability-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .prob-high { background-color: #d4edda; color: #155724; }
+        .prob-medium { background-color: #fff3cd; color: #856404; }
+
+        /* --- BLOC EQUIPE NATIONALE --- */
+        .nat-team-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-weight: bold;
+            color: var(--tm-blue);
+            margin-bottom: 12px;
+        }
+
+        .stat-badge {
+            background-color: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        NextTeam Market
+    </header>
+
+    <!-- ========== BLOC PROFIL ÉLARGI (pleine largeur) ========== -->
+    <div class="card">
+        <div class="card-body player-profile">
+            <div class="player-photo-wrapper" style="overflow: hidden;">
+                <img src="" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: center 1%; display: block; transform: scale(0.6); transform-origin: center 1%;">
+            </div>
+            
+            <div class="player-details">
+                <h1 class="player-name">Bilal Karma</h1>
+                <p class="player-meta">Attaquant gauche • Jonquille Sportive de Reignier A • 17 ans et 4 mois</p>
+                
+                <div class="info-grid">
+                    <div class="info-item"><span>Date de naissance:</span> 8 avril 2009</div>
+                    <div class="info-item">
+                        <span>Nationalité:</span>
+                        <img src="https://img.a.transfermarkt.technology/flagge/tiny/75.png?lm=1791356388" alt="Drapeau de l'Italie" style="width: 16px; height: 12px; margin-left: 5px; vertical-align: middle;">
+                        Italie
+                    </div>
+                    <div class="info-item">
+                        <span>Lieu de naissance:</span>
+                        <img src="https://img.a.transfermarkt.technology/flagge/tiny/75.png?lm=1791356388" alt="Drapeau de l'Italie" style="width: 16px; height: 12px; margin-left: 5px; vertical-align: middle;">
+                        Milan 
+                    </div>
+                    <div class="info-item"><span>Taille:</span> 1,76 m</div>
+                    <div class="info-item"><span>Pied fort:</span> Droit</div>
+                    <div class="info-item"><span>Agent:</span> Famille</div>
+                    <div class="info-item"><span>Au club depuis:</span> 19 Févr. 2026</div>
+                     <div class="info-item"><span>Position:</span> Ailier gauche</div>
+                </div>
+            </div>
+
+            <!-- ===== ENCART CLUB ACTUEL (style Transfermarkt) ===== -->
+            <div class="club-box">
+                <div class="club-box-top">
+                    <img class="club-box-logo"
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10"
+                         alt="Logo J.S.R">
+                    <div>
+                        <div class="club-box-label">Club actuel</div>
+                        <div class="club-box-name">Jonquille Sportive de Reignier A</div>
+                    </div>
+                </div>
+
+                <div class="club-box-row">
+                    <span class="row-label">Pays du club :</span>
+                    <img src="https://img.a.transfermarkt.technology/flagge/verysmall/50.png?lm=1791356388" alt="Drapeau de la France" style="width: 16px; height: 12px;">
+                    <span>France</span>
+                </div>
+
+                <div class="club-box-row">
+                    <span class="row-label">Ligue :</span>
+                    <img src="https://www.ville-la-grand.fr/wp-content/uploads/2018/09/logo-district-300x300px.png" alt="Logo District de Football Haute-Savoie" style="height: 22px; width: auto;">
+                    <span style="white-space: nowrap; font-size: 0.80rem;">District de Football Haute-Savoie</span>
+                </div>
+            </div>
+
+            <!-- ===== PETIT BLOC VALEUR MARCHANDE ===== -->
+            <div class="market-box">
+                <div class="market-box-label">Valeur marchande</div>
+                <div class="market-box-amount">0,00 €</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-layout">
+        
+        <div class="left-column">
+
+            <div class="card">
+                <div class="card-header">Position principale & Terrain Tactique</div>
+                <div class="card-body position-container">
+                    
+                    <div class="position-text-block">
+                        <p class="main-position-text">Poste principal : <strong>Ailier gauche</strong></p>
+                        <ul class="other-positions">
+                            <li>• Postes secondaires :</li>
+                            <li>Ailier droit</li>
+                        </ul>
+                    </div>
+
+                    <div class="pitch-wrapper">
+                        <div class="football-pitch">
+                            <div class="pitch-top-line"></div>
+                            <div class="pitch-center-arc"></div>
+                            
+                            <div class="pitch-box-bottom"></div>
+                            <div class="pitch-goal-bottom"></div>
+                            
+                            <!-- Gros point Principal : Ailier Gauche -->
+                            <div class="dot dot-main" title="Ailier Gauche (Principal)"></div>
+                            
+                            <!-- Petit point : Ailier Droit -->
+                            <div class="dot dot-secondary dot-ad" title="Ailier Droit"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Historique des transferts</div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <style>
+  .club-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .club-badge {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+  }
+  .no-club-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: block;
+  }
+  td { vertical-align: middle; }
+</style>
+
+<!-- Icône "interdit" réutilisable (à placer une seule fois dans la page) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icon-no-club" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="#d93025" stroke-width="2.5"/>
+    <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" stroke="#d93025" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<style>
+  .transfers {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #222;
+  }
+  .transfers th {
+    background: #f0f0f0;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+  }
+  .transfers td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .transfers tr:hover td { background: #fafafa; }
+  .club-cell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .club-badge,
+  .no-club-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    object-fit: contain;
+    display: block;
+  }
+  .transfers .right { text-align: right; }
+</style>
+
+<!-- Icône "interdit" (à mettre une seule fois dans la page) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icon-no-club" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="#d93025" stroke-width="2.5"/>
+    <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" stroke="#d93025" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<table class="transfers">
+  <thead>
+    <tr>
+      <th>Saison</th>
+      <th>Date</th>
+      <th>Club quitté</th>
+      <th>Club rejoint</th>
+      <th class="right">Valeur marchande</th>
+      <th class="right">Montant</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- 10 sept. 2026 : J.S.R B → J.S.R A -->
+    <tr>
+      <td>26/27</td>
+      <td>10 sept. 2026</td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="J.S.R B"><span>J.S.R B (D2)</span></div></td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="J.S.R A"><span>J.S.R A (D1)</span></div></td>
+      <td class="right">0,00 €</td>
+      <td class="right">Libre</td>
+    </tr>
+
+    <!-- 2 juil. 2026 : JS Reignier → J.S.R B -->
+    <tr>
+      <td>26/27</td>
+      <td>2 juil. 2026</td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="JS Reignier"><span>Jonquille Sportive de Reignier U17 (D1)</span></div></td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="J.S.R B"><span>J.S.R B (D2)</span></div></td>
+      <td class="right">0,00 €</td>
+      <td class="right">Libre</td>
+    </tr>
+
+    <!-- 19 février 2026 : Sans club → JS Reignier U17N -->
+    <tr>
+      <td>25/26</td>
+      <td>19 févr 2026</td>
+      <td><div class="club-cell"><svg class="no-club-icon"><use href="#icon-no-club"/></svg><span>Sans club</span></div></td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="JS Reignier"><span>Jonquille Sportive de Reignier U17 (D1)</span></div></td>
+      <td class="right">0,00 €</td>
+      <td class="right">Libre</td>
+    </tr>
+
+    <!-- 30 juin 2025 : Champel → Sans club -->
+    <tr>
+      <td>24/25</td>
+      <td>30 juin 2025</td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBGAUP5Ve1UtYCiP8daE5_3mWLRBBDPZkliuzFtTYCeenOreu__Y_te4&s=10" alt="FC Champel"><span>FC Champel Youth League B Inter</span></div></td>
+      <td><div class="club-cell"><svg class="no-club-icon"><use href="#icon-no-club"/></svg><span>Sans club</span></div></td>
+      <td class="right">0,00 €</td>
+      <td class="right">Libre</td>
+    </tr>
+
+    <!-- 15 août 2024 : Sans club → Champel -->
+    <tr>
+      <td>24/25</td>
+      <td>15 août 2024</td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="JS Reignier"><span>Jonquille Sportive de Reignier U15 (R1)</span></div></td>
+      <td><div class="club-cell"><img class="club-badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBGAUP5Ve1UtYCiP8daE5_3mWLRBBDPZkliuzFtTYCeenOreu__Y_te4&s=10" alt="FC Champel"><span>FC Champel Youth League B Inter</span></div></td>
+      <td class="right">0,00 €</td>
+      <td class="right">Libre</td>
+    </tr>
+
+  </tbody>
+</table>
+</tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== RÉSEAUX SOCIAUX ========== -->
+            <style>
+                .social-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 10px 16px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 4px;
+                    background: linear-gradient(135deg, #ffffff 0%, #f7f9fa 100%);
+                    color: var(--tm-blue);
+                    font-weight: 700;
+                    text-decoration: none;
+                    transition: box-shadow 0.2s, transform 0.2s;
+                }
+                .social-link:hover {
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                    transform: translateY(-1px);
+                }
+                .social-link svg {
+                    width: 32px;
+                    height: 32px;
+                    flex-shrink: 0;
+                }
+                .sources-list {
+                    list-style: none;
+                    font-size: 0.9rem;
+                }
+                .sources-list li {
+                    padding: 10px 0;
+                    border-bottom: 1px solid var(--border-color);
+                }
+                .sources-list li:last-child {
+                    border-bottom: none;
+                }
+                .sources-list a {
+                    color: var(--tm-light-blue);
+                    font-weight: 700;
+                    text-decoration: none;
+                }
+                .sources-list a:hover {
+                    text-decoration: underline;
+                }
+                .sources-list .src-use {
+                    color: var(--text-light);
+                }
+            </style>
+            <!-- ========== HISTORIQUE DES MATCHS ========== -->
+<style>
+    .hm-table { font-size: 0.85rem; width: 100%; border-collapse: collapse; }
+    .hm-table th { padding: 8px 10px; text-align: center; }
+    .hm-table td { padding: 8px 10px; text-align: center; vertical-align: middle; }
+    .hm-table th:nth-child(1), .hm-table td:nth-child(1) { text-align: left; white-space: nowrap; }
+    .hm-table th:nth-child(2), .hm-table td:nth-child(2) { text-align: left; }
+    .hm-match { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .hm-team { display: inline-flex; align-items: center; gap: 6px; }
+    .hm-logo { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+    .hm-logo-empty { width: 22px; height: 22px; border-radius: 50%; background: #ccc; display: inline-block; flex-shrink: 0; }
+    .hm-vs { color: var(--tm-blue); font-size: 0.9rem; }
+    .hm-icons { display: inline-flex; align-items: center; justify-content: center; gap: 3px; }
+    .hm-icon { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+    .hm-ball { font-size: 1rem; line-height: 1; }
+    .hm-boot { width: 18px; height: 18px; color: var(--tm-blue); }
+    .hm-none { color: var(--text-light); }
+</style>
+
+<div class="card">
+    <div class="card-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+        <span>Historique des matchs</span>
+        <button id="hm-season-btn" class="hm-season-select" type="button" onclick="hmToggleMenu()" style="background: none; color: inherit; border: none; outline: none; box-shadow: none; appearance: none; -webkit-appearance: none; padding: 0; margin: 0; font: inherit; cursor: pointer;"><span id="hm-season-label">26/27</span> ▾</button>
+        <ul id="hm-season-menu" style="display: none; position: absolute; top: 100%; right: 0; z-index: 50; list-style: none; margin: 0; padding: 4px 0; background: #fff; color: #222; border: 1px solid #ccc; border-radius: 4px; min-width: 80px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <li data-season="26/27" style="padding: 6px 12px; cursor: pointer;">26/27</li>
+            <li data-season="25/26" style="padding: 6px 12px; cursor: pointer;">25/26</li>
+            <li data-season="24/25" style="padding: 6px 12px; cursor: pointer;">24/25</li>
+            <li data-season="23/24" style="padding: 6px 12px; cursor: pointer;">23/24</li>
+        </ul>
+    </div>
+    <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table class="hm-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Match</th>
+                    <th>Buts</th>
+                    <th>Passes déc</th>
+                    <th>Min jouées</th>
+                </tr>
+            </thead>
+            <tbody id="hm-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // === TES LIENS D'ICÔNES : remplace les deux liens ci-dessous ===
+    // Tant que ce n'est pas un vrai lien (http...), un ballon ⚽ et une chaussure par défaut s'affichent.
+    const hmBallImg = "https://static.vecteezy.com/ti/vecteur-libre/p1/5513063-ballon-de-football-contour-icone-illustration-sur-fond-blanc-gratuit-vectoriel.jpg";
+    const hmBootImg = "https://static.vecteezy.com/ti/vecteur-libre/p1/14370457-chaussure-de-sport-avec-icone-de-crampons-vectoriel.jpg";
+
+    // Logos : remplace null par un lien pour afficher le logo d'un club adverse
+    const hmJSR = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10";
+    const hmbull = "https://img.a.transfermarkt.technology/wappen/head/2053.png?lm=1789459280";
+    const hmraut = "https://tmssl.akamaized.net//images/wappen/big/39354.png?lm=1414227222";
+    const hman = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4yVID8Mi-E54Efz0x133KA6oppPdXUq2fm4s7xxafWA&s=10";
+    const hmcast = "https://img.a.transfermarkt.technology/wappen/head/35803.png?lm=1789461252";
+    const hmng = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ45KZbr9wJsVy2Dqo2WQfZnczLVVesWvxtNduT_8joheDJIWTyPAmfItE&s=10";
+    const hmev = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpj-M20sfCXWuwB9WvTa6QizmrYPe-XnvSbWTCwl40lv3Dp2gSKKGTp0ps&s=10";
+    const hmspo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk4Ne1Jg0YBNZKFOzkgcpR4SbYWhB49jaI6QSg8rok1di_cGq9xOJyM5Su&s=10";
+    const teamleman ="https://fcversoix.ch/wp-content/uploads/2020/09/FCV_logo_ssfond.png"
+    const rive="https://fcchalais.ch/team-logos/teamrivegauche.png"
+    const vernier ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTNTCl9PLNi6ZRuXsAq0jF8zga2FNb0iK6eJAcMq6KP47HEetB6c9NsvA&s=10"
+    const meyrin="https://upload.wikimedia.org/wikipedia/fr/7/7a/FCMeyrin.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original"
+    const bernex="https://signal-fc.ch/wp-content/uploads/2018/06/cropped-signal-fc-logo_h.png"
+    const vessy="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9YkfdMX7OcIOkRN_ZUKEoVoO9RUxh_Z-pf0AJs2MwQvuQi1HLrwGrLM&s=10"
+    const plo="https://static.wixstatic.com/media/d61560_57ce8c149a2944979541b5292efcff88~mv2.png"
+    const lancy ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYQnoLgAPs6frVFtGsfuuGXa9zJEBMXgTwTNRCd9pEoZUJQNQaiG0aWrE&s=10"
+    const veyrier ="https://i0.wp.com/veyriersports.ch/wp-content/uploads/2018/08/logo-VEYRIERSPORTS_2018-e1600438350816.png?fit=250%2C286&ssl=1"
+    const sion="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw7sBFy_V_27XF328TbEU4iyZKyQuUpDO2Yh-kX8Xn9w&s=10"
+    const monthey="https://upload.wikimedia.org/wikipedia/fr/b/b5/Logo_FC_Monthey.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original"
+    const hmChampel = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBGAUP5Ve1UtYCiP8daE5_3mWLRBBDPZkliuzFtTYCeenOreu__Y_te4&s=10";
+    const hmvougy = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCT1Rq8w0lLb8VXGnlpMl6EpMmDP9Pwg27HCpKsjXVj_MQ8DfYsbwvpc0&s=10";
+    const hmmarignier = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9bFaWkilqh32Fv_PwF9skR4Yq-BJtHjTizATWynWbpCPtJ0TCWe9oLNXP&s=10";
+    const hmpringy = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGJ3Ykme5lk78geufG8Tu-tSQZnLduKifm4RspJtc-iy6EUWfVSU5uH6M&s=10";
+    const hmcluses = "https://upload.wikimedia.org/wikipedia/fr/6/67/Logo_Cluses-Scionzier_FC_-_2018.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original";
+    const hmpaysgex = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQwswsX9rkWDmBtlf4-xveIDDAwyYeWYSAvN_8ZSTg1w&s=10";
+    const hmrumilly = "https://upload.wikimedia.org/wikipedia/fr/4/40/Logo_Groupement_Football_Albanais_74_-_2021.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original";
+    const hmcruseilles = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl858XvJ1ynHOtEjBYKcnu4NJRQyW-vs9QjnrovDjmHA&s";
+    const hmamancy = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-dZad6xe40pI5FsrdANXiTazAcvq4kpCqPVhHBKNeJM8aOsAHcdGZuxQ&s=10";
+    const hmvetraz = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDEIyXBaK72ey86ER8NikZLfXldrgJdQ1Klm2XVDw9Q9Urg3e7f6JgCEs&s=10";
+    const hmevian = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbMHYlK7QAEtalxtMudFwwzE-yER9wkgJNMXBJDWQ59bz5131kXYlGvKTs&s=10";
+    const hmepagny = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsTwZWrOr_9b7Y0OKaFPw0N48ezLmMyJyrUD5KVyt82r_DxmMHgsDhOlY&s=10";
+    // Matchs par saison : une ligne par match
+    // home = équipe 1, away = équipe 2 : [nom, logo]
+    // score = score affiché entre les deux équipes (J.S.R toujours en premier)
+    const hmMatches = {
+        "26/27": [
+            { date: "...", match: "0", buts: "0", passes: "0", min: "0" }
+        ],
+        "25/26": [
+            { date: "06.04.2026", home: ["J.S.R U17", hmJSR], away: ["Sporting Club Manduel", hmspo], score: "1-1", buts: 1, passes: 0, min: 90 },
+            { date: "06.04.2026", home: ["J.S.R U17", hmJSR], away: ["Nîmes Gazelec Sportif Gardois", hmng], score: "0-0", buts: 0, passes: 0, min: 90 },
+            { date: "05.04.2026", home: ["J.S.R U17", hmJSR], away: ["Castelneau Le Crès Fc", hmcast], score: "0-3", buts: 0, passes: 0, min: 60 },
+            { date: "04.04.2026", home: ["J.S.R U17", hmJSR], away: ["Fc Rautheim U17", hmraut], score: "2-1", buts: 2, passes: 0, min: 90 },
+            { date: "04.04.2026", home: ["J.S.R U17", hmJSR], away: ["Fc Bulle U17", hmbull], score: "4-3", buts: 2, passes: 2, min: 90 },
+            { date: "12.03.2026", home: ["J.S.R U17", hmJSR], away: ["US Annecy-le-vieux U17", hman], score: "0-4", buts: 0, passes: 0, min: 10 },
+            { date: "23.02.2026", home: ["J.S.R U17", hmJSR], away: ["A.S.Evires U17", hmev], score: "3-1", buts: 0, passes: 0, min: 8 }
+        ],
+        
+                "24/25": [
+            { date: "01.06.25", home: ["FC Champel", hmChampel], away: ["Vernier B1", vernier], score: "3-2", buts: 2, passes: "0", min: 79 },
+            { date: "17.05.25", home: ["FC Champel", hmChampel], away: ["Team Rive Gauche B1", rive], score:"4-1", buts: 2, passes: 1, min: "86" },
+            { date: "13.05.25", home: ["FC Champel", hmChampel], away: ["Meyrin Fc B1", meyrin], score:"0-6", buts: "0", passes: "0", min: "68" },
+            { date: "06.05.25", home: ["FC Champel", hmChampel], away: ["Signal FC Bernex-Confignon B1", bernex],score: "1-5", buts: "0", passes: "0", min: "50" },
+            { date: "20.04.25", home: ["FC Champel", hmChampel], away: ["Fc Rhexia Vessy B1", vessy],score: "1-2", buts: "0", passes: "0", min: "0" },
+            { date: "13.04.25", home: ["FC Champel", hmChampel], away: ["Fc Meyrin", meyrin],score: "0-0", buts: "0", passes: "0", min: "39" },
+            { date: "26.04.25", home: ["FC Champel", hmChampel], away: ["Fc PLO B1",plo],score: "3-2", buts: 1, passes: 1, min: "90" },
+            { date: "22.04.25", home: ["FC Champel", hmChampel], away: ["fc veyrier sports B1", veyrier],score: "4-3", buts: 3, passes: "0", min: "90" },
+            { date: "21.11.24", home: ["FC Champel", hmChampel], away: ["Lancy Fc Youth League B1", lancy],score: "3-3", buts: "0", passes: "0", min: "8" },
+            { date: "11.11.24", home: ["FC Champel", hmChampel], away: ["Meyrin Fc Youth League B1", meyrin],score: "4-2", buts: "0", passes: "0", min: "0" },
+            { date: "28.09.24", home: ["FC Champel", hmChampel], away: ["Sion Fc Youth League B1", sion],score: "3-1", buts: "0", passes: "0", min: "8" },
+            { date: "21.09.24", home: ["FC Champel", hmChampel], away: ["FC PLO Youth League B1", plo],score: "0-1", buts: "0", passes: "0", min: "50" },
+            { date: "15.09.24", home: ["FC Champel", hmChampel], away: ["Meyrin Fc Youth League B1", meyrin],score: "0-2", buts: "0", passes: "0", min: "0" },
+            { date: "01.09.24", home: ["FC Champel", hmChampel], away: ["Team Léman Youth League B1", teamleman], score: "0-0",buts: "0", passes: "0", min: "7" },
+        ],
+        
+                "23/24": [
+                       { date: "11.05.2024", home: ["J.S.R U15", hmJSR], away: ["Union Sportive Vougy U15", hmvougy], score: "0-2", buts: 0, passes: 0, min: 90 },
+            { date: "13.04.2024", home: ["J.S.R U15", hmJSR], away: ["Marignier Sports U15", hmmarignier], score: "4-3", buts: 3, passes: 1, min: 90 },
+            { date: "23.03.2024", home: ["J.S.R U15", hmJSR], away: ["Us Pringy U15", hmpringy], score: "2-1", buts: 1, passes: 1, min: 90 },
+            { date: "02.03.2024", home: ["J.S.R U15", hmJSR], away: ["Cluses-Scionzier Fc U15", hmcluses], score: "0-2", buts: "0", passes: "0", min: "0" },
+            { date: "17.02.2024", home: ["J.S.R U15", hmJSR], away: ["Pays de Gex Fc U15", hmpaysgex], score: "1-0", buts: "0", passes: 1, min: "60" },
+            { date: "27.01.2024", home: ["J.S.R U15", hmJSR], away: ["GFA Rumilly Vallières U15", hmrumilly], score: "0-0", buts: "0", passes: "0", min: "0" },
+            { date: "13.01.2024", home: ["J.S.R U15", hmJSR], away: ["Fc Cruseille U15", hmcruseilles], score: "0-4", buts: "0", passes: "0", min: "0" },
+            { date: "09.12.2023", home: ["J.S.R U15", hmJSR], away: ["Es Amancy U15", hmamancy], score: "1-2", buts: "0", passes: "0", min: 90 },
+            { date: "25.11.2023", home: ["J.S.R U15", hmJSR], away: ["US Vétraz U15", hmvetraz], score: "4-2", buts: 3, passes: "0", min: 90 },
+            { date: "11.11.2023", home: ["J.S.R U15", hmJSR], away: ["Pays de Gex Fc U15", hmpaysgex], score: "0-1", buts: "0", passes: "0", min: 90 },
+            { date: "21.10.2023", home: ["J.S.R U15", hmJSR], away: ["Evian FC U15", hmevian], score: "1-4", buts: "0", passes: 1, min: 90 },
+            { date: "07.10.2023", home: ["J.S.R U15", hmJSR], away: ["Cluses-Scionzier Fc U15", hmcluses], score: "0-3", buts: "0", passes: "0", min: "0" },
+            { date: "23.09.2023", home: ["J.S.R U15", hmJSR], away: ["Fc Epagny Metz-Tessy U15", hmepagny], score: "3-2", buts: 2, passes: "0", min: "90" },
+            { date: "16.09.2023", home: ["J.S.R U15", hmJSR], away: ["Us Annecy-le-Vieux U15", hman], score: "4-3", buts: 2, passes: 1, min: 80 }
+        ]
+    };
+
+    // Icônes : ton lien d'image s'il est valide, sinon icône par défaut
+    const hmBallHTML = hmBallImg.indexOf("http") === 0
+        ? '<img class="hm-icon" src="' + hmBallImg + '" alt="But">'
+        : '<span class="hm-ball"></span>';
+
+    const hmBootHTML = hmBootImg.indexOf("http") === 0
+        ? '<img class="hm-icon" src="' + hmBootImg + '" alt="Passe décisive">'
+        : '<svg class="hm-boot" viewBox="0 0 24 24" fill="currentColor" aria-label="Passe décisive"><path d="M3 4h6v5c0 1 1 2 2 2h4c3 0 6 2 6 5v2H3z"/><rect x="4.5" y="19" width="2" height="2.5"/><rect x="9" y="19" width="2" height="2.5"/><rect x="13.5" y="19" width="2" height="2.5"/><rect x="18" y="19" width="2" height="2.5"/></svg>';
+
+    function hmTeam(t) {
+        const logo = t[1]
+            ? '<img class="hm-logo" src="' + t[1] + '" alt="' + t[0] + '">'
+            : '<span class="hm-logo-empty"></span>';
+        return '<span class="hm-team">' + logo + '<span>' + t[0] + '</span></span>';
+    }
+
+    function hmIcons(n, icon) {
+        if (typeof n === "string") return '<span class="hm-none">' + n + '</span>';
+        if (!n) return '<span class="hm-none">–</span>';
+        return '<span class="hm-icons">' + icon.repeat(n) + '</span>';
+    }
+
+    function hmShowSeason(key) {
+        const list = hmMatches[key] || [];
+        document.getElementById("hm-body").innerHTML = list.map(m => `
+            <tr>
+                <td>${m.date}</td>
+                <td><div class="hm-match">${m.match ? m.match : hmTeam(m.home) + '<strong class="hm-vs">' + (m.score || 'vs') + '</strong>' + hmTeam(m.away)}</div></td>
+                <td>${hmIcons(m.buts, hmBallHTML)}</td>
+                <td>${hmIcons(m.passes, hmBootHTML)}</td>
+                <td>${m.min}</td>
+            </tr>`).join("");
+        document.getElementById("hm-season-label").textContent = key;
+    }
+
+    function hmToggleMenu() {
+        const m = document.getElementById("hm-season-menu");
+        m.style.display = m.style.display === "none" ? "block" : "none";
+    }
+
+    document.querySelectorAll("#hm-season-menu li").forEach(li => {
+        li.addEventListener("click", () => {
+            hmShowSeason(li.dataset.season);
+            document.getElementById("hm-season-menu").style.display = "none";
+        });
+    });
+
+    document.addEventListener("click", e => {
+        if (!e.target.closest("#hm-season-btn")) {
+            document.getElementById("hm-season-menu").style.display = "none";
+        }
+    });
+
+    hmShowSeason("26/27");
+</script>
+
+   <div class="card">
+    <div class="card-header">Réseaux sociaux</div>
+    <div class="card-body social-row" style="display: flex; align-items: center; gap: 12px;">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/e.karma09/" target="_blank" rel="noopener noreferrer" title="Instagram" style="display: inline-flex; background: none; border: none; padding: 0; box-shadow: none; transform: none;">
+            <svg width="30" height="30" viewBox="0 0 24 24" aria-label="Instagram">
+                <defs>
+                    <linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0" stop-color="#feda75"/>
+                        <stop offset="0.3" stop-color="#fa7e1e"/>
+                        <stop offset="0.55" stop-color="#d62976"/>
+                        <stop offset="0.8" stop-color="#962fbf"/>
+                        <stop offset="1" stop-color="#4f5bd5"/>
+                    </linearGradient>
+                </defs>
+                <rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
+                <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="16.2" cy="7.8" r="1" fill="#fff"/>
+            </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@pvpv..33" target="_blank" rel="noopener noreferrer" title="TikTok" style="display: inline-flex; background: none; border: none; padding: 0; box-shadow: none; transform: none;">
+            <svg width="30" height="30" viewBox="0 0 24 24" aria-label="TikTok">
+                <rect width="24" height="24" rx="6" fill="#000"/>
+                <g transform="translate(5.5 5.5) scale(0.55)" fill="#fff">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </g>
+            </svg>
+        </a>
+
+    </div>
+</div>
+            <!-- ========== SOURCES ========== -->
+            <div class="card">
+                <div class="card-header">Sources</div>
+                <div class="card-body">
+                    <ul class="sources-list">
+                        <li>
+                            <a href="https://www.transfermarkt.fr" target="_blank" rel="noopener noreferrer">Information personnels du joueur </a>
+                            <span class="src-use"> : Famille / Joueur / Documents justificatifs</span>
+                        </li>
+                        <li>
+                            <a href="https://fr.wikipedia.org" target="_blank" rel="noopener noreferrer">Historique de transfert</a>
+                            <span class="src-use"> : Famille / Club / Fédération Française de Football (FFF) / Association cantonale genevoise de football ACGF</span>
+                        </li>
+                        <li>
+                            <a href="https://www.ville-la-grand.fr" target="_blank" rel="noopener noreferrer">Statistiques des saisons</a>
+                            <span class="src-use"> : Fédération Française de Football / Association cantonale genevoise de football (ACGF)</span>
+                        </li>
+                        <li>
+                            <a href="https://images.google.com" target="_blank" rel="noopener noreferrer">Equipe nationnal / Tournois</a>
+                            <span class="src-use">Fédération Française de Football (FFF) / Organisateurs </span>
+                        </li>
+                            <a href="https://images.google.com" target="_blank" rel="noopener noreferrer">Rumeurs de transfert</a>
+                            <span class="src-use">Réseaux de Scouting / Réseaux de recrutement / Sources privés </span>
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    <div class="right-column">
+
+    <div class="card">
+        <div class="card-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+            <span>Statistiques de la saison</span>
+            <button id="season-btn" class="season-select" type="button" onclick="toggleSeasonMenu()" style="background: none; color: inherit; border: none; outline: none; box-shadow: none; appearance: none; -webkit-appearance: none; padding: 0; margin: 0; font: inherit; cursor: pointer;"><span id="season-label">25/26</span> ▾</button>
+            <ul id="season-menu" style="display: none; position: absolute; top: 100%; right: 0; z-index: 50; list-style: none; margin: 0; padding: 4px 0; background: #fff; color: #222; border: 1px solid #ccc; border-radius: 4px; min-width: 80px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                <li data-season="26/27" style="padding: 6px 12px; cursor: pointer;">26/27</li>
+                <li data-season="25/26" style="padding: 6px 12px; cursor: pointer;">25/26</li>
+                <li data-season="24/25" style="padding: 6px 12px; cursor: pointer;">24/25</li>
+                <li data-season="23/24" style="padding: 6px 12px; cursor: pointer;">23/24</li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="nat-team-header">
+                <img id="team-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10" alt="Logo J.S.R" style="width: 28px; height: 28px; object-fit: contain; flex-shrink: 0;">
+                <span id="team-name">Jonquille Sportive de Reignier U17</span>
+                <span class="stat-badge" id="badge-matchs">Matchs</span>
+                <span class="stat-badge" id="badge-minutes">Min jouées</span>
+                <span class="stat-badge" id="badge-buts">Buts</span>
+                <span class="stat-badge" id="badge-passes">Passes déc</span>
+            </div>
+
+            <table style="font-size: 0.85rem; width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Saison</th>
+                        <th style="text-align: center;">Matchs</th>
+                        <th style="text-align: center;">Min jouées</th>
+                        <th style="text-align: center;">Buts</th>
+                        <th style="text-align: center;">Passes déc</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Données par saison : modifie les chiffres ici
+        const seasons = {
+            "26/27": {
+                club: "Jonquille Sportive de Reignier I",
+                rows: [
+                    { saison: "2026/27", matchs: 1, minutes: "45", buts: 0, passes: 0 }
+                ]
+            },
+
+            "25/26": {
+                club: "Jonquile Sportive de Reignier U17",
+                rows: [
+                    { saison: "2025/26", matchs: 10, minutes: "693", buts: 5, passes: 2 }
+                ]
+            },
+            "24/25": {
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiBGAUP5Ve1UtYCiP8daE5_3mWLRBBDPZkliuzFtTYCeenOreu__Y_te4&s=10",
+                club: "Fc Champel Youth League B Inter",
+                rows: [
+                    { saison: "2024/25", matchs: 17, minutes: 580, buts: 3, passes: 1 }
+                ]
+            },
+            "23/24": {
+                club: "Jonquille Sportive de Reignier U15",
+                rows: [
+                    { saison: "2023/24", matchs: 20, minutes: 1330, buts: 15, passes: 9 }
+                ]
+            }
+        };
+
+        function showSeason(key) {
+            const data = seasons[key];
+            const body = document.getElementById("stats-body");
+            body.innerHTML = data.rows.map(r => `
+                <tr>
+                    <td style="text-align: left;">${r.saison}</td>
+                    <td style="text-align: center;">${r.matchs}</td>
+                    <td style="text-align: center;">${r.minutes}</td>
+                    <td style="text-align: center;">${r.buts}</td>
+                    <td style="text-align: center;">${r.passes}</td>
+                </tr>`).join("");
+
+            const num = v => Number(v) || 0;
+            const totalMatchs = data.rows.reduce((s, r) => s + num(r.matchs), 0);
+            const totalMinutes = data.rows.reduce((s, r) => s + num(r.minutes), 0);
+            const totalButs = data.rows.reduce((s, r) => s + num(r.buts), 0);
+            const totalPasses = data.rows.reduce((s, r) => s + num(r.passes), 0);
+            document.getElementById("badge-matchs").textContent = totalMatchs + " matchs";
+            document.getElementById("badge-minutes").textContent = totalMinutes + " min jouées";
+            document.getElementById("badge-buts").textContent = totalButs + " buts";
+            document.getElementById("badge-passes").textContent = totalPasses + " passes décisives";
+
+            const logoJSR = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCvwVzzIPepms0TdYHxwfWKdAJE5eO9tNQDnGyGIrIRGr2MaFIb6h6GcH&s=10";
+            const logoEl = document.getElementById("team-logo");
+            logoEl.src = data.logo || logoJSR;
+            logoEl.alt = data.logo ? "Logo FC Champel" : "Logo J.S.R";
+            document.getElementById("team-name").textContent = data.club || "Jonquille Sportive de Reignier U17";
+
+            document.getElementById("season-label").textContent = key;
+        }
+
+        function toggleSeasonMenu() {
+            const m = document.getElementById("season-menu");
+            m.style.display = m.style.display === "none" ? "block" : "none";
+        }
+
+        document.querySelectorAll("#season-menu li").forEach(li => {
+            li.addEventListener("click", () => {
+                showSeason(li.dataset.season);
+                document.getElementById("season-menu").style.display = "none";
+            });
+        });
+
+        document.addEventListener("click", e => {
+            if (!e.target.closest(".season-select")) {
+                document.getElementById("season-menu").style.display = "none";
+            }
+        });
+
+        showSeason("26/27");
+    </script>
+
+            <div class="card">
+                <div class="card-header">Rumeurs de transfert</div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Club intéressé</th>
+                                <th>Dernière réponse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="club-cell">
+                                        <img class="club-badge" src="https://tmssl.akamaized.net//images/wappen/small/26251.png?lm=1553790505" alt="US Folgore Caratese" style="width: 25px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                        US Folgore Caratese
+                                    </div>
+                                </td>
+                                <td><span class="probability-badge prob-high">18 avr. 2026</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="club-cell">
+                                        <img class="club-badge" src="https://upload.wikimedia.org/wikipedia/en/8/89/Internacional_Huesca.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Internacionnal Huesca" style="width: 25px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                        Internacionnal Huesca
+                                    </div>
+                                </td>
+                                <td><span class="probability-badge prob-high">28 juin. 2026</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+
+    <!-- ========== STATISTIQUES DE LA SAISON (sélecteur d'année) ========== -->
+    <style>
+        .season-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .season-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: var(--white);
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%231a3151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            color: var(--tm-blue);
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 6px 32px 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .season-select:focus {
+            outline: 2px solid var(--tm-yellow);
+            outline-offset: 1px;
+        }
+        .season-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--tm-blue);
+            margin-bottom: 12px;
+        }
+        .season-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .season-stat {
+            text-align: center;
+            padding: 16px 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f7f9fa 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .season-stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .season-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--tm-blue);
+        }
+    </style>
+
+    </div><!-- fin right-column -->
+</div><!-- fin grid-layout -->
+</div><!-- fin container -->
+
+<!-- ================================================================ -->
+<!-- ========== VERSION MOBILE / TABLETTE (à laisser en dernier) ===== -->
+<!-- ================================================================ -->
+<style>
+    /* ----- Base : tous écrans ----- */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    img { max-width: 100%; }
+    .left-column, .right-column { min-width: 0; }
+
+    /* ----- Tablette et petits ordinateurs (jusqu'à 1000 px) ----- */
+    @media (max-width: 1000px) {
+        .card-body { overflow-x: auto; }
+
+        .player-profile {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+        }
+        .player-details { width: 100%; }
+        .info-grid { text-align: center; justify-items: center; }
+
+        .club-box,
+        .market-box {
+            width: 100%;
+            max-width: 480px;
+            align-self: center;
+            text-align: center;
+        }
+        .club-box-top { justify-content: center; }
+        .club-box-row { justify-content: center; flex-wrap: wrap; }
+        .club-box-row span { white-space: normal !important; }
+    }
+
+    /* ----- Téléphones (iPhone, Samsung, Redmi...) jusqu'à 600 px ----- */
+    @media (max-width: 600px) {
+        body {
+            padding: 10px;
+            padding-left: calc(10px + env(safe-area-inset-left));
+            padding-right: calc(10px + env(safe-area-inset-right));
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+        }
+
+        header {
+            text-align: center;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .grid-layout { gap: 12px; }
+        .card { margin-bottom: 12px; }
+        .card-header { padding: 10px 12px; font-size: 1rem; }
+        .card-body { padding: 12px; }
+
+        /* Profil */
+        .player-photo-wrapper { width: 130px; height: 156px; margin: 0 auto; }
+        .player-name { font-size: 1.6rem; }
+        .player-meta { font-size: 0.85rem; margin-bottom: 12px; }
+        .info-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+            font-size: 0.92rem;
+        }
+        .club-box { padding: 12px; }
+        .club-box-logo { width: 56px; height: 56px; }
+        .market-box { padding: 12px; }
+
+        /* Terrain tactique */
+        .position-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+        }
+        .position-text-block, .pitch-wrapper { width: 100%; }
+        .main-position-text { font-size: 1rem; margin-bottom: 10px; }
+
+        /* Tableaux en général */
+        table { font-size: 0.82rem; }
+        th { padding: 8px 6px; font-size: 0.78rem; }
+        td { padding: 8px 6px; }
+        .transfers th, .transfers td { padding: 6px 8px; }
+
+        /* Statistiques de la saison */
+        .nat-team-header {
+            justify-content: center;
+            text-align: center;
+            gap: 8px;
+        }
+        .stat-badge { font-size: 0.8rem; padding: 4px 8px; }
+
+        /* Historique des matchs */
+        .hm-table { font-size: 0.78rem; }
+        .hm-table th, .hm-table td { padding: 8px 4px; }
+        .hm-match { white-space: normal; flex-wrap: wrap; gap: 4px 6px; }
+        .hm-team { white-space: normal; gap: 4px; }
+        .hm-logo, .hm-logo-empty { width: 18px; height: 18px; }
+        .hm-icon, .hm-boot { width: 15px; height: 15px; }
+        .hm-icons { flex-wrap: wrap; gap: 2px; }
+
+        /* Sélecteurs de saison plus faciles à toucher */
+        #season-btn, #hm-season-btn {
+            padding: 8px 4px !important;
+            min-height: 40px;
+        }
+        #season-menu li, #hm-season-menu li {
+            padding: 12px 18px !important;
+        }
+
+        /* Réseaux sociaux centrés */
+        .social-row { justify-content: center; gap: 18px !important; }
+        .social-row svg { width: 38px; height: 38px; }
+
+        /* Sources */
+        .sources-list { font-size: 0.85rem; overflow-wrap: anywhere; }
+    }
+
+    /* ----- Petits téléphones (iPhone SE, 360 px et moins) ----- */
+    @media (max-width: 380px) {
+        .player-name { font-size: 1.4rem; }
+        .player-photo-wrapper { width: 115px; height: 138px; }
+        .football-pitch { width: 160px; height: 134px; }
+        .hm-table { font-size: 0.74rem; }
+        .stat-badge { font-size: 0.75rem; }
+    }
+</style>
+
+</body>
+</html>
